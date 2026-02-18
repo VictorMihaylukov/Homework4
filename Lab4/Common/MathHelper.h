@@ -1,3 +1,9 @@
+//***************************************************************************************
+// MathHelper.h by Frank Luna (C) 2011 All Rights Reserved.
+//
+// Helper math class.
+//***************************************************************************************
+
 #pragma once
 
 #include <Windows.h>
@@ -7,11 +13,13 @@
 class MathHelper
 {
 public:
+	// Returns random float in [0, 1).
 	static float RandF()
 	{
 		return (float)(rand()) / (float)RAND_MAX;
 	}
 
+	// Returns random float in [a, b).
 	static float RandF(float a, float b)
 	{
 		return a + RandF()*(b-a);
@@ -46,6 +54,7 @@ public:
 		return x < low ? low : (x > high ? high : x); 
 	}
 
+	// Returns the polar angle of the point (x,y) in [0, 2*PI).
 	static float AngleFromXY(float x, float y);
 
 	static DirectX::XMVECTOR SphericalToCartesian(float radius, float theta, float phi)
@@ -59,6 +68,9 @@ public:
 
     static DirectX::XMMATRIX InverseTranspose(DirectX::CXMMATRIX M)
 	{
+		// Inverse-transpose is just applied to normals.  So zero out 
+		// translation row so that it doesn't get into our inverse-transpose
+		// calculation--we don't want the inverse-transpose of the translation.
         DirectX::XMMATRIX A = M;
         A.r[3] = DirectX::XMVectorSet(0.0f, 0.0f, 0.0f, 1.0f);
 

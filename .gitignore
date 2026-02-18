@@ -417,3 +417,5 @@ FodyWeavers.xsd
 *.msm
 *.msp
 Lab4/Lab4/Box/CppProperties.json
+/Lab4/Textures
+/Lab4/Shaders
